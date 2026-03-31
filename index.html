@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet" />
+  <title></title>
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="card">
+      <p class="info" id="info">Welcome MOYY 👋</p>
+      <h1 id="title">SESI 6 CUYUNIVERSITY</h1>
+    </div>
+
+    <nav>
+      <a onclick="reRender()" class="home-btn">🏠</a>
+      <a onclick="setMode('dark')">🌙</a>
+      <a onclick="setMode('blue')">🌊</a>
+      <a onclick="setMode('green')">🌿</a>
+      <a onclick="setMode('rgb')">🌈</a>
+    </nav>
+
+  </div>
+</body>
+
+
+<!-- initializing function script -->
+<script>
+  let body = document.body;
+  let info = document.getElementById("info");
+  let title = document.getElementById("title");
+
+  function typingEffect(text) {
+    title.textContent = "";
+    let i = 0;
+    function ketik() {
+      if (i < text.length) {
+        title.textContent += text[i];
+        i++;
+        setTimeout(ketik, 40);
+      }
+    }
+    ketik();
+  }
+
+  function setMode(mode) {
+    localStorage.setItem("mode", mode);
+    body.className = mode;
+
+    if (mode === "dark") {
+      info.textContent = "🌙 Dark Mode";
+      typingEffect("🌙 DARK MODE CUY");
+    }
+    else if (mode === "blue") {
+      info.textContent = "🌊 Blue Mode";
+      typingEffect("🌊 BLUE MODE CUY");
+    }
+    else if (mode === "green") {
+      info.textContent = "🌿 Green Mode";
+      typingEffect("🌿 GREEN MODE CUY");
+    }
+    else if (mode === "rgb") {
+      info.textContent = "🌈 RGB MODE";
+      typingEffect("🌈 RGB MODE CUY");
+    }
+  }
+
+  window.onload = () => {
+    let saved = localStorage.getItem("mode");
+    if (saved) setMode(saved);
+  };
+
+  function reRender() {
+    localStorage.clear();
+    body.className = "";
+    title.textContent = "SESI 6 CUYUNIVERSITY";
+    info.textContent = "Welcome MOYY 👋";
+  }
+</script>
+</body>
+
+</html>
